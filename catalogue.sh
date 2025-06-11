@@ -60,7 +60,7 @@ VALIDATE $? "Downloading catalogue"
 cd /app
 rm -rf /app/*
 unzip /tmp/catalogue.zip &>>$LOG_FILE
-VALIDATE $? "Unzipping catalogue"
+VALIDATE $? "Unzipping Catalogue"
 
 npm install
 VALIDATE $? "Installing Dependencies"
@@ -74,8 +74,8 @@ systemctl start catalogue
 VALIDATE $? "Starting Catalogue"
 
 cp $SCRIPT_DIR/mongo.repo /etc/yum.repos.d/mongo.repo
-dnf install mongodb-mongosh -y
-VALIDATE $? "Instaling MongoDB Client"
+dnf install mongodb-mongosh -y &>>$LOG_FILE
+VALIDATE $? "Installing MongoDB Client"
 
 STATUS=$(mongosh --host mongodb.srikanth553.store --eval 'db.getMongo().getDBNames().indexOf("catalogue")')
 if [ $STATUS -lt 0 ]
