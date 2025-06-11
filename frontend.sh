@@ -13,7 +13,7 @@ SCRIPT_DIR=$PWD
 mkdir -p $LOGS_FOLDER
 echo "Script started executing at: $(date)" | tee -a $LOG_FILE
 
-#check if user has root preveleges or not
+# check the user has root priveleges or not
 if [ $USERID -ne 0 ]
 then
     echo -e "$R ERROR:: Please run this script with root access $N" | tee -a $LOG_FILE
@@ -37,12 +37,12 @@ dnf module disable nginx -y &>>$LOG_FILE
 VALIDATE $? "Disabling Default Nginx"
 
 dnf module enable nginx:1.24 -y &>>$LOG_FILE
-VALIDATE $? "Enabling Default Nginx:1.24"
+VALIDATE $? "Enabling Nginx:1.24"
 
 dnf install nginx -y &>>$LOG_FILE
 VALIDATE $? "Installing Nginx"
 
-systemctl enable nginx &>>$LOG_FILE
+systemctl enable nginx  &>>$LOG_FILE
 systemctl start nginx 
 VALIDATE $? "Starting Nginx"
 
@@ -62,5 +62,6 @@ VALIDATE $? "Remove default nginx conf"
 cp $SCRIPT_DIR/nginx.conf /etc/nginx/nginx.conf
 VALIDATE $? "Copying nginx.conf"
 
-systemctl restart nginx
+systemctl restart nginx 
 VALIDATE $? "Restarting nginx"
+
