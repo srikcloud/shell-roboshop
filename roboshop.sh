@@ -1,5 +1,5 @@
 #!/bin/bash
-export PATH=$PATH:/usr/local/bin/aws
+
 
 AMI_ID="ami-09c813fb71547fc4f"
 SG_ID="sg-0d6f41ad737b25b42" # replace with your SG ID
